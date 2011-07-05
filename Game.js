@@ -53,3 +53,12 @@ GE.Game.prototype.set_scale_factor = function(s) {
 	this.scale_factor = GE.ValueChecker.float(s);
 	this.canvas.set_scale_factor(s);
 };
+
+
+GE.Game.prototype.handle_key_down = function(ev) {
+
+};
+
+GE.Game.prototype.handle_key_up = function(ev) {
+
+};
