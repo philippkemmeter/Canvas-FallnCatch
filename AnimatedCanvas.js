@@ -30,6 +30,9 @@ GE.AnimatedCanvas.prototype.init = function(canvas_id, fps) {
 	this.scale_factor = 1;
 	
 	this.game_objects = [];	
+	
+	// Time will count on each draw
+	this.abs_game_time = 0;
 }
 
 GE.AnimatedCanvas.prototype.draw = function() {
@@ -39,12 +42,13 @@ GE.AnimatedCanvas.prototype.draw = function() {
 			/ (this_frame_time - this.last_frame_time));
 	}
 	var dt = (this_frame_time - this.last_frame_time) / 1000;
+	this.abs_game_time += dt;
 	this.last_frame_time = this_frame_time;
 
 	this._clear_backbuf();
 	
 	for (var i = 0; i < this.game_objects.length; ) {
-		this.game_objects[i].update(dt);
+		this.game_objects[i].update(dt, this.abs_game_time);
 		if (this.game_objects[i].shall_be_deleted())
 			this.game_objects.splice(i, 1);
 		else

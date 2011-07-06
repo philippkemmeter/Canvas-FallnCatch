@@ -145,10 +145,10 @@ return bc;}
 ;GE.AnimatedCanvas=function(kc,lc){if(typeof(kc)!='undefined'){this.init(kc,lc);}
 }
 ;GE.AnimatedCanvas.prototype.init=function(kc,lc){lc=GE.ValueChecker.int(lc,'fps',1);this.canvas=document.getElementById(kc);if(!this.canvas.getContext){alert('Your browser is to old...');return;}
-this.context=this.canvas.getContext('2d');this.backbuf=document.createElement('canvas');this.backbuf.width=this.canvas.width;this.backbuf.height=this.canvas.height;this.backbuf_context=this.backbuf.getContext('2d');this.fps=lc;this.secs_between_frames=1/this.fps;this.last_frame_time=0;this.fps_vis=false;this.object_cnt_vis=false;this.width=this.canvas.width;this.height=this.canvas.height;this.scale_factor=1;this.game_objects=[];}
+this.context=this.canvas.getContext('2d');this.backbuf=document.createElement('canvas');this.backbuf.width=this.canvas.width;this.backbuf.height=this.canvas.height;this.backbuf_context=this.backbuf.getContext('2d');this.fps=lc;this.secs_between_frames=1/this.fps;this.last_frame_time=0;this.fps_vis=false;this.object_cnt_vis=false;this.width=this.canvas.width;this.height=this.canvas.height;this.scale_factor=1;this.game_objects=[];this.abs_game_time=0;}
 GE.AnimatedCanvas.prototype.draw=function(){var mc=new Date().getTime();if(this.fps_vis){this.actual_fps=Math.round(1000
 /(mc-this.last_frame_time));}
-var nc=(mc-this.last_frame_time)/1000;this.last_frame_time=mc;this._clear_backbuf();for(var i=0;i<this.game_objects.length;){this.game_objects[i].update(nc);if(this.game_objects[i].shall_be_deleted())this.game_objects.splice(i,1);else
+var nc=(mc-this.last_frame_time)/1000;this.abs_game_time+=nc;this.last_frame_time=mc;this._clear_backbuf();for(var i=0;i<this.game_objects.length;){this.game_objects[i].update(nc,this.abs_game_time);if(this.game_objects[i].shall_be_deleted())this.game_objects.splice(i,1);else
 i++}
 for(var i=0;i<this.game_objects.length;i++){this.game_objects[i].draw(this.backbuf_context,nc);}
 this.context.drawImage(this.backbuf,0,0);if(this.fps_vis){this.max_fps=Math.round(1000
