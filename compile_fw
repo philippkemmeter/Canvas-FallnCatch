@@ -6,6 +6,7 @@ ResourceManager.js \
 ValueChecker.js \
 AnimatedCanvas.js \
 EventUtil.js \
+Ajax.js \
 Game.js \
 Img/Image.js \
 Img/AniImage.js \
