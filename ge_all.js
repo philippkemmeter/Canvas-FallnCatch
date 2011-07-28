@@ -196,7 +196,7 @@ return xc;}
 ;GE.EventUtil.create_event=function(_b,yc){var xc=new Object();xc.bubbles=false;xc.cancelable=false;xc.target=null;xc.timeStamp=(new Date()).getTime();xc.type=_b;xc.detail=yc||0;xc.preventDefault=xc.stopPropagation=function(){}
 ;return xc;}
 GE.Ajax={}
-;GE.Ajax.callback_function=[];GE.Ajax.session_name='sid';GE.Ajax.session_id='';GE.Ajax.xml_http_requests=[];GE.Ajax.xhr_available=[];GE.Ajax.request_num=0;GE.Ajax.create_new_request=function(){if(typeof XMLHttpRequest!='undefined')return new XMLHttpRequest();else if(window.ActiveXObject){var zc=["Microsoft.XmlHttp","MSXML2.XmlHttp","MSXML2.XmlHttp.3.0","MSXML2.XmlHttp.4.0","MSXML2.XmlHttp.5.0"];for(var i=zc.length-1;i>=0;i--){try{$c=new ActiveXObject(zc[i]);return $c;}
+;GE.Ajax.callback_functions=[];GE.Ajax.session_name='sid';GE.Ajax.session_id='';GE.Ajax.xml_http_requests=[];GE.Ajax.xhr_available=[];GE.Ajax.request_num=0;GE.Ajax.create_new_request=function(){if(typeof XMLHttpRequest!='undefined')return new XMLHttpRequest();else if(window.ActiveXObject){var zc=["Microsoft.XmlHttp","MSXML2.XmlHttp","MSXML2.XmlHttp.3.0","MSXML2.XmlHttp.4.0","MSXML2.XmlHttp.5.0"];for(var i=zc.length-1;i>=0;i--){try{$c=new ActiveXObject(zc[i]);return $c;}
 catch(e){}
 }
 }
