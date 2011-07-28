@@ -10,7 +10,7 @@
 GE.Ajax = {};
 
 /** Welche Funktion bei erfolgreichem Request aufgerufen werden soll */
-GE.Ajax.callback_function = [];
+GE.Ajax.callback_functions = [];
 
 /** 
  * Der Name der Session, den der Server vergeben hat (muss mitgesandt werden
