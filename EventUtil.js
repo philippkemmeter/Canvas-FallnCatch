@@ -40,29 +40,33 @@ GE.EventUtil.remove_event_handler = function(target, type, fn) {
 GE.EventUtil.formatEvent = function (ev) {
 	if (!ev)
 		ev = window.event;
-    if (!ev.stopPropagation) {
-        ev.charCode = (ev.type == "keypress") ? ev.keyCode : 0;
-        ev.eventPhase = 2;
-        ev.isChar = (ev.charCode > 0);
-        ev.pageX = ev.clientX + document.body.scrollLeft;
-        ev.pageY = ev.clientY + document.body.scrollTop;
-        ev.preventDefault = function () {
-            this.returnValue = false;
-        };
+	try {
+	    if (!ev.stopPropagation) {
+    	    ev.charCode = (ev.type == "keypress") ? ev.keyCode : 0;
+        	ev.eventPhase = 2;
+	        ev.isChar = (ev.charCode > 0);
+    	    ev.pageX = ev.clientX + document.body.scrollLeft;
+        	ev.pageY = ev.clientY + document.body.scrollTop;
+	        ev.preventDefault = function () {
+    	        this.returnValue = false;
+        	};
 
-        if (ev.type == "mouseout") {
-            ev.relatedTarget = ev.toElement;
-        } else if (ev.type == "mouseover") {
-            ev.relatedTarget = ev.fromElement;
-        }
+	        if (ev.type == "mouseout") {
+    	        ev.relatedTarget = ev.toElement;
+        	} else if (ev.type == "mouseover") {
+            	ev.relatedTarget = ev.fromElement;
+	        }
 
-        ev.stopPropagation = function () {
-            this.cancelBubble = true;
-        };
+    	    ev.stopPropagation = function () {
+        	    this.cancelBubble = true;
+	        };
 
-        ev.target = ev.srcElement;
-        ev.time = (new Date).getTime();
+    	    ev.target = ev.srcElement;
+        	ev.time = (new Date).getTime();
+		}
     }
+	catch (e) {}
+
     return ev;
 };
 
