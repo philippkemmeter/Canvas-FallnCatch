@@ -210,7 +210,7 @@ GE.Objects.GameObject.prototype.get_scaled_collision_body = function() {
  * @param String type     Typ des Events.
  * @param Function(ev) fn Funktion, die aufgerufen werden soll.
  */
-GE.Objecst.GameObject.prototype.add_event_handler = function(type, fn) {
+GE.Objects.GameObject.prototype.add_event_handler = function(type, fn) {
 	if (!this.event_handlers[type]) {
 		throw new Error(
 			'type (' + type + ' unknown.'
