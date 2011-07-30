@@ -45,6 +45,10 @@ GE.Objects.GameObject.prototype.init = function(game, p) {
 	this.scaled_collision_body = new MathExt.LinAlg2D.Rect(
 		0, 0, 0, 0
 	);
+
+	this.event_handlers = {
+		'click': []
+	};
 };
 
 GE.Objects.GameObject.prototype.update = function(game_time) {
@@ -198,4 +202,50 @@ GE.Objects.GameObject.prototype.get_collision_body = function() {
 
 GE.Objects.GameObject.prototype.get_scaled_collision_body = function() {
 	return this.scaled_collision_body.translate(this.get_scaled_position());
+};
+
+/**
+ * Fügt einen Event-Handler hinzu.
+ *
+ * @param String type     Typ des Events.
+ * @param Function(ev) fn Funktion, die aufgerufen werden soll.
+ */
+GE.Objecst.GameObject.prototype.add_event_handler = function(type, fn) {
+	if (!this.event_handlers[type]) {
+		throw new Error(
+			'type (' + type + ' unknown.'
+		);
+	}
+	GE.ValueChecker.instance_of(fn, 'fn', Function);
+	this.event_handlers[type].push(fn);
+};
+
+/**
+ * Entfernt einen Event-Handler.
+ *
+ * @param String type     Typ des Events.
+ * @param Function(ev) fn Funktion, die aufgerufen werden soll.
+ */
+GE.Objects.GameObject.prototype.remove_event_handler = function(type, fn) {
+	if (!this.event_handlers[type]) {
+		throw new Error(
+			'type (' + type + ' unknown.'
+		);
+	}
+	GE.ValueChecker.instance_of(fn, 'fn', Function);
+	this.event_handlers[type].remove(fn);
+};
+
+/**
+ * Ruft das Click-Event explizit auf.
+ *
+ * @param Event ev Ereignis, das verschickt werden soll. Wird keins angegeben,
+ *                 wird ein standard Click-Event erzeugt.
+ */
+GE.Objects.GameObject.prototype.on_click = function(ev) {
+	if (!ev)
+		ev = GE.EventUtil.create_event('click');
+
+	for (var i = 0; i < this.event_handlers['click'].length; i++)
+		this.event_handlers['click'][i].call(this, ev);
 };
