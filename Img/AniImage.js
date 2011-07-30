@@ -9,10 +9,10 @@ GE.Img.AniImage = function(img, frames, loop, fps, reversed) {
 
 GE.Img.AniImage.extend(GE.Img.Image);
 
-GE.Img.AniImage.prototype.init = function(x, y, img, frames, loop, fps, 
+GE.Img.AniImage.prototype.init = function(img, frames, loop, fps, 
 	reversed) 
 {
-	this.constructor.parent.init.call(this, x, y, img);
+	this.constructor.parent.init.call(this, img);
 	this.fps = fps;
 	this.cur_frame = 0;
 	this.frames = frames;
