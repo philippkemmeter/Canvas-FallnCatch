@@ -15,7 +15,7 @@ GE.Img.Image.prototype.init = function(img) {
 	this.scale_factor = 1;
 };
 
-GE.Img.Image.prototype.draw = function(context, x, y) {
+GE.Img.Image.prototype.draw = function(context, x, y, game_time) {
 	context.save();
 	context.translate(x, y);
 	if (this.flip_x) {

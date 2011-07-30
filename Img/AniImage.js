@@ -36,7 +36,7 @@ GE.Img.AniImage.prototype.init = function(img, frames, loop, fps,
 	this.time_since_last_frame = this.time_between_frames;
 };
 
-GE.Img.AniImage.prototype.draw = function (context, x, y, frame_num) {
+GE.Img.AniImage.prototype.draw_frame = function (context, x, y, frame_num) {
 	context.save();
 	context.translate(x, y);
 
@@ -61,10 +61,8 @@ GE.Img.AniImage.prototype.draw = function (context, x, y, frame_num) {
 	context.restore();
 }
 
-GE.Img.AniImage.prototype.draw_next_frame = function (context, x, y, 
-	game_time) 
-{
-	this.draw(context, x, y, game_time, this.cur_frame);
+GE.Img.AniImage.prototype.draw = function (context, x, y, game_time) {
+	this.draw_frame(context, x, y, game_time, this.cur_frame);
 
 	this.time_since_last_frame -= game_time;
 

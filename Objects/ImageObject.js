@@ -31,12 +31,7 @@ GE.Objects.ImageObject.prototype.init = function(game, img, p) {
 };
 
 GE.Objects.ImageObject.prototype.draw = function(context, game_time) {
-	if (GE.instance_of(this.img, GE.Img.Image))
-		this.img.draw(context, this.get_scaled_x(), this.get_scaled_y());
-	else
-		this.img.draw_next_frame(
-			context, this.get_scaled_x(), this.get_scaled_y(), game_time
-		);
+	this.img.draw(context, this.get_scaled_x(), this.get_scaled_y(), game_time);
 };
 
 GE.Objects.ImageObject.prototype.set_image = function(img) {
