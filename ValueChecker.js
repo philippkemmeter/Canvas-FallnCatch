@@ -265,10 +265,22 @@ GE.ValueChecker.int = function(value, varname, min, max) {
 				);;
 			}
 			if ((value != parseInt(value)) || (value < min) || (value > max)) {
-				throw new Error(
-					varname + '=="' + value 
-						+ '" ∉ {' + min + ', ' + (min+1) + ', ...∞}'
-				);
+				if (min == max) {
+					throw new Error(
+						varname + '=="' + value + '" ∉ {' + min + '}'
+					);
+				} 
+				else if ((min + 1) == max) {
+					throw new Error(
+						varname + '=="' + value + '" ∉ {' + min + ', ' + max + '}'
+					);
+				}
+				else {
+					throw new Error(
+						varname + '=="' + value 
+							+ '" ∉ {' + min + ', ' + (min+1) + ', ...,' + max + '}'
+					);
+				}
 			}
 		}
 	}
