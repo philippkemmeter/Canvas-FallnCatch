@@ -117,7 +117,7 @@ GE.Ajax.send_request = function(url, callback_function, post_data, no_parse) {
 	var xhr = GE.Ajax.xml_http_requests[xhri];
 
 	GE.Ajax.callback_functions[xhri] = callback_function;
-	var method = typeof(post_data == 'undefined') ? "GET" : "POST";
+	var method = (typeof(post_data) == 'undefined') ? "GET" : "POST";
 
 	url = (url.indexOf('?') == -1) ? url + '?' : url + '&';
 	url += "anti_cache=" + GE.Ajax.request_num;
