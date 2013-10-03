@@ -1,0 +1,9 @@
+#!/bin/bash
+cd MathExt
+./compile_fw
+cd ../GE
+./compile_fw
+cd ../FallnCatch
+./compile_game
+cd ..
+cat MathExt/*all.js GE/*all.js FallnCatch/*all.js > all.js

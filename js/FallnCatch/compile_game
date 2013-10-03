@@ -1,0 +1,21 @@
+#!/bin/sh
+
+cat Game.js \
+Objects/FallingThing.js \
+Objects/FallingGoodie.js \
+Objects/FallingBaddie.js \
+Objects/FallingTimie.js \
+Objects/Protagonist.js \
+Objects/GameBar.js \
+Objects/ScorePlus10.js \
+> game_all.js
+
+if [ -e ~/scripts/JSO/jso ]
+then
+	my_dir=$PWD
+	cd ~/scripts/JSO/
+	./jso $my_dir/game_all.js $my_dir/game_all2.js
+	cd -
+	mv game_all2.js game_all.js
+fi
+

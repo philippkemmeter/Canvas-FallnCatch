@@ -1,0 +1,28 @@
+#!/bin/sh
+
+cat GE.js \
+KEYS.js \
+ResourceManager.js \
+ValueChecker.js \
+AnimatedCanvas.js \
+EventUtil.js \
+Ajax.js \
+Game.js \
+Img/Image.js \
+Img/AniImage.js \
+Txt/Text.js \
+Objects/GameObject.js \
+Objects/ImageObject.js \
+Objects/CollidingImageObject.js \
+Objects/TextObject.js \
+> ge_all.js
+
+if [ -e ~/scripts/JSO/jso ]
+then
+	my_dir=$PWD
+	cd ~/scripts/JSO/
+	./jso $my_dir/ge_all.js $my_dir/ge_all2.js
+	cd -
+	mv ge_all2.js ge_all.js
+fi
+

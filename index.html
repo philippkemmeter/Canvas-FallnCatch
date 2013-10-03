@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Canvas Collect</title>
+<script type="text/javascript" src="js/all.js"></script>
+<script type="text/javascript">
+var game = null;
+var ani_canvas = null;
+
+handle_key_down = function(e) {
+	game.handle_key_down(e);
+};
+
+handle_key_up = function(e) {
+    var key = e.charCode ? e.charCode : e.keyCode;
+    switch (key) {
+    	case KEYS._1:
+    		game.set_scale_factor(1);
+    		break;
+    	case KEYS._2:
+        	game.set_scale_factor(1.5);
+        	break;
+    }
+	game.handle_key_up(e);
+};
+
+function start() {
+	ani_canvas = new GE.AnimatedCanvas('canvas_id', 50);
+	game = new FallnCatch.Game(
+		new GE.ResourceManager(), 
+		ani_canvas
+	);
+};
+</script>
+</head>
+<body onload="javascript: start()"
+	onkeydown="javascript: handle_key_down(event);" 
+	onkeyup="javascript: handle_key_up(event);">
+<canvas id="canvas_id" width="800", height="400">
+</canvas>
+
+</body>
+</html>
