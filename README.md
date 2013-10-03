@@ -1,4 +1,10 @@
-canvas_game_collect
-===================
+#FallnCatch
 
-JS-Canvas Example Game
+JS-Canvas Example Game.
+
+## Install
+
+Download. Then run
+    make
+and navigate to index.html in your favorite browser.
+
